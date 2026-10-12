@@ -1,0 +1,246 @@
+
+/*
+ * Otomata Lab — Gaya global.
+ * Menggunakan Tailwind CSS v4.
+ */
+
+@import "tailwindcss";
+
+/*
+ * Mengaktifkan dark mode berbasis class.
+ * Kelas dark dipasang pada elemen html oleh ThemeToggle.tsx.
+ */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================================================
+   1. PENGATURAN DASAR
+   ========================================================= */
+
+@layer base {
+  :root {
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    color-scheme: light;
+    scrollbar-color: #cbd5e1 transparent;
+  }
+
+  html {
+    min-width: 320px;
+    min-height: 100%;
+    scroll-behavior: smooth;
+    scroll-padding-top: 1rem;
+  }
+
+  body {
+    min-width: 320px;
+    min-height: 100vh;
+    margin: 0;
+
+    background-color: #f8fafc;
+    color: #0f172a;
+
+    transition:
+      background-color 200ms ease,
+      color 200ms ease;
+  }
+
+  /*
+   * Warna dasar ketika tema gelap aktif.
+   */
+  .dark {
+    color-scheme: dark;
+    scrollbar-color: #475569 transparent;
+  }
+
+  .dark body {
+    background-color: #020617;
+    color: #e2e8f0;
+  }
+
+  /*
+   * Menyamakan tipografi kontrol formulir dengan halaman.
+   */
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  /*
+   * Fokus keyboard tetap terlihat untuk aksesibilitas.
+   */
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible,
+  a:focus-visible {
+    outline: 2px solid #6366f1;
+    outline-offset: 3px;
+  }
+
+  /*
+   * Warna teks yang dipilih pengguna.
+   */
+  ::selection {
+    background-color: #c7d2fe;
+    color: #1e1b4b;
+  }
+
+  .dark ::selection {
+    background-color: #4338ca;
+    color: #ffffff;
+  }
+
+  /*
+   * Gambar dan media tidak boleh melampaui layar.
+   */
+  img,
+  svg,
+  video,
+  canvas {
+    max-width: 100%;
+  }
+
+  /*
+   * Tautan mengikuti warna komponen induk secara default.
+   */
+  a {
+    color: inherit;
+ }
+}
+
+/* =========================================================
+   2. SCROLLBAR
+   ========================================================= */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.dark * {
+  scrollbar-color: #475569 transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: 999px;
+  background-color: #cbd5e1;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background-color: #475569;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background-color: #64748b;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+/* =========================================================
+   3. ANIMASI
+   ========================================================= */
+
+/*
+ * Menonaktifkan animasi yang tidak diperlukan bagi pengguna
+ * yang mengaktifkan preferensi reduced motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   4. UTILITAS GLOBAL
+   ========================================================= */
+
+/*
+ * Teks panjang tetap dapat dibungkus tanpa merusak layout.
+ */
+.text-wrap-safe {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/*
+ * Area yang bisa digulir secara horizontal tetap mendukung
+ * gestur sentuh pada perangkat seluler.
+ */
+.horizontal-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/*
+ * Menjaga konten kode dan simbol automata tetap terbaca.
+ */
+pre,
+code,
+kbd,
+samp {
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+}
+
+pre {
+  max-width: 100%;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+code {
+  overflow-wrap: anywhere;
+}
